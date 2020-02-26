@@ -1,12 +1,12 @@
 steps:
 # Build the application image
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/hello-app:latest', '.']
-#   timeout: 500s
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/hello-app:latest', '.']
+  timeout: 500s
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', 'gcr.io/$PROJECT_ID/hello-app:latest']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/hello-app:latest']
 
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   args: ['set', 'image', 'deployment/helloweb', 'hello-app=gcr.io/$PROJECT_ID/hello-app:latest', '-n', 'hello']
@@ -14,12 +14,12 @@ steps:
 #   - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
 #   - 'CLOUDSDK_CONTAINER_CLUSTER=gke-loreal'
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/hello-app:$SHORT_SHA', '.']
-  timeout: 500s
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/hello-app:$SHORT_SHA', '.']
+#   timeout: 500s
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/hello-app:$SHORT_SHA']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', 'gcr.io/$PROJECT_ID/hello-app:$SHORT_SHA']
 
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   args: ['set', 'image', 'deployment/helloweb', 'hello-app=gcr.io/$PROJECT_ID/hello-app:$SHORT_SHA', '-n', 'hello']
@@ -28,17 +28,17 @@ steps:
 #   - 'CLOUDSDK_CONTAINER_CLUSTER=gke-loreal'
 
 # Deploy container image to Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'run'
-  - 'deploy'
-  - 'hello-app'
-  - '--image'
-  - 'gcr.io/$PROJECT_ID/hello-app:$SHORT_SHA'
-  - '--region'
-  - 'europe-west1'
-  - '--platform'
-  - 'managed'
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args:
+#   - 'run'
+#   - 'deploy'
+#   - 'hello-app'
+#   - '--image'
+#   - 'gcr.io/$PROJECT_ID/hello-app:$SHORT_SHA'
+#   - '--region'
+#   - 'europe-west1'
+#   - '--platform'
+#   - 'managed'
 
 timeout: 1000s
 tags: ['docker_build']
